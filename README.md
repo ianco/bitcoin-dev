@@ -9,7 +9,7 @@ I have adapted the Docker image and scripts to:
 - add all the BitCoin dev dependencies to the Docker image
 - use the Docker image to compile the BitCoin codebase and then deploy the compiled image
 - use the Docker image to run the BitCoin unit tests
-- run a local BitCoin network using the compiled images (as per the blog referenced above
+- run a local BitCoin network using the compiled images (as per the blog referenced above)
 
 Note that you will need Docker installed, you can get Docker here,along with instructions to install on your platform.
 
