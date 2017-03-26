@@ -2,7 +2,7 @@
 
 Setup a BitCoin development environment using Docker
 
-This project is based on the following blog:  https://geraldkaszuba.com/creating-your-own-experimental-bitcoin-network/
+This project is based on the [this blog](https://geraldkaszuba.com/creating-your-own-experimental-bitcoin-network/).
 
 I have adapted the Docker image and scripts to:
 
@@ -13,11 +13,11 @@ I have adapted the Docker image and scripts to:
 
 Note that you will need Docker installed, you can get Docker here,along with instructions to install on your platform.
 
-Note also that I run my development environment in a Ubuntu 16.04 VM (VirtualBox), this is the platform that the following has been tested on.
+Note also that I run my development environment in a Ubuntu 16.10 VM (VirtualBox), this is the platform that the following has been tested on.
 
 ## CONFIG
 
-You will need to clone the Git repositories for the BitCoin codebase and this repo:
+You will need to clone the Git repositories for the [BitCoin codebase](https://github.com/bitcoin/bitcoin) and [this repo](https://github.com/ianco/bitcoin-dev):
 
 I keep all my code under ~/Projects:
 ```
