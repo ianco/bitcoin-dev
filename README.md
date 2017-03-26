@@ -82,26 +82,27 @@ make alice_cmd bccmd=getinfo
 make alice_cmd bccmd="getblockhash 0"
 make bob_cmd bccmd=getinfo
 make bob_cmd bccmd="getblockhash 0"
+make alice_cmd bccmd=getbalance
+make bob_cmd bccmd=getbalance
 
 ## add alice as a node to bob (get the <alice ip> IP address from the "docker inspect" command above)
 make bob_cmd bccmd="addnode <alice ip> onetry"
 
 ## generate some blocks
-make alice_cmd bccmd=""
-make alice_cmd bccmd=""
+make alice_cmd bccmd="generate 101"
 
 ## check the balance for each container
-make alice_cmd bccmd=""
-make bob_cmd bccmd=""
+make alice_cmd bccmd=getbalance
+make bob_cmd bccmd=getbalance
 
 ## generate a bc address for bob, and pay some funds from alice to bob
-make bob_cmd bccmd=""
-make alice_cmd bccmd=""
+make bob_cmd bccmd=getnewaddress
+make alice_cmd bccmd="sendtoaddress <bob addr> 7"
 
 ## generate some more blocks, and then check each container's balance again
-make alice_cmd bccmd=""
-make alice_cmd bccmd=""
-make bob_cmd bccmd=""
+make alice_cmd bccmd="generate 10"
+make alice_cmd bccmd=getbalance
+make bob_cmd bccmd=getbalance
 
 
 
