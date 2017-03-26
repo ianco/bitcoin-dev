@@ -57,7 +57,9 @@ docker images
 Now you are ready to setup your test network.  You will run two versions of the bitcoind image, configured to run bitcoind on two different ports, with two different host names ("bob" and "alice").  These will run as background processes and you will use docker to run the Bitcoin client on each container.
 
 ## build and run "bob" and "alice" containers
+make alice_shell
 make alice_daemon
+make bob_shell
 make bob_daemon
 docker ps
 
@@ -72,18 +74,34 @@ make alice_cmd bccmd="..."
 Echoing the sequence of commands from the blog referenced above, try the following:
 
 ## inspect each container (note the IP address of each)
+docker inspect alice
+docker inspect bob
 
 ## get info for each of the bitcoind containers
+make alice_cmd bccmd=getinfo
+make alice_cmd bccmd="getblockhash 0"
+make bob_cmd bccmd=getinfo
+make bob_cmd bccmd="getblockhash 0"
 
-## add alice as a node to bob
+## add alice as a node to bob (get the <alice ip> IP address from the "docker inspect" command above)
+make bob_cmd bccmd="addnode <alice ip> onetry"
 
 ## generate some blocks
+make alice_cmd bccmd=""
+make alice_cmd bccmd=""
 
 ## check the balance for each container
+make alice_cmd bccmd=""
+make bob_cmd bccmd=""
 
 ## generate a bc address for bob, and pay some funds from alice to bob
+make bob_cmd bccmd=""
+make alice_cmd bccmd=""
 
 ## generate some more blocks, and then check each container's balance again
+make alice_cmd bccmd=""
+make alice_cmd bccmd=""
+make bob_cmd bccmd=""
 
 
 

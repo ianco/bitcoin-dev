@@ -8,7 +8,7 @@ BASE_IMG=anon-sol/bitcoin-dev-base
 RUN_BASE_IMG=run-bitcoin-dev-base
 IMG=anon-sol/bitcoin-dev
 
-RUN_DAEMON=bitcoind -regtest -rpcallowip=* -printtoconsole
+RUN_DAEMON=bitcoind -regtest -daemon -printtoconsole
 RUN_SHELL=bash
 
 build-base:
@@ -44,20 +44,20 @@ alice_rm:
 bob_rm:
 	-docker rm -f bob
 
-alice_daemon: alice_rm
-	$(DOCKER_ALICE) -d=true -i $(IMG) $(RUN_DAEMON)
-
 alice_shell: alice_rm
-	$(DOCKER_ALICE) -i $(IMG) $(RUN_SHELL)
-
-bob_daemon: bob_rm
-	$(DOCKER_BOB) -d=true -i $(IMG) $(RUN_DAEMON)
+	$(DOCKER_ALICE) -it $(IMG) $(RUN_SHELL)
 
 bob_shell: bob_rm
-	$(DOCKER_BOB) -i $(IMG) $(RUN_SHELL)
+	$(DOCKER_BOB) -it $(IMG) $(RUN_SHELL)
+
+bob_daemon: 
+	docker exec bob $(RUN_DAEMON)
 
 bob_cmd:
 	docker exec bob bitcoin-cli -regtest $(bccmd)
+
+alice_daemon: 
+	docker exec alice $(RUN_DAEMON)
 
 alice_cmd:
 	docker exec alice bitcoin-cli -regtest $(bccmd)
